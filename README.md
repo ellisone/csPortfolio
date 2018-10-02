@@ -6,23 +6,46 @@
 * Dice[here]()
 
 ```Java
-if(NewT>=4){
-    NewT=NewT%4;
-    binaryTotal=binaryTotal+"1";
-  }else{
-    binaryTotal=binaryTotal+"0";
-  }
-  if(NewT>=2){
-    NewT=NewT%2;
-    binaryTotal=binaryTotal+"1";
-  }else{
-    binaryTotal=binaryTotal+"0";
-  }
-  if(NewT>=1){
-    binaryTotal=binaryTotal+"1";
-  }else{
-    binaryTotal=binaryTotal+"0";
-  }
-  text(binaryTotal,280,70);
+ivoid show()
+  {
+    noStroke();
+    fill(0);
+    int CD=(int)((Math.random()*3)+1);
+    if(CD==1){
+      fill(255,0,0);
+    }else if(CD==2){
+      fill(0,255,0);
+    }else{
+      fill(0,0,255);
+    }
+    rect(x,y,50,50,7);
+    roll();
+    if(CD==1){
+      fill(0,255,0);
+    }else if(CD==2){
+      fill(0,0,255);
+    }else{
+      fill(255,0,0);
+    }
+    if(num==1||num==3||num==5){
+      ellipse(x+25,y+25,10,10);
+    }
+    if(num==2||num==3||num==4||num==5){
+      ellipse(x+12,y+12,10,10);
+      ellipse(x+38,y+38,10,10);
+    }
+    if(num==4||num==5){
+      ellipse(x+12,y+38,10,10);
+      ellipse(x+38,y+12,10,10);
+    }
+    if(num==6){
+      ellipse(x+15,y+10,10,10);
+      ellipse(x+15,y+25,10,10);
+      ellipse(x+15,y+40,10,10);
+      ellipse(x+35,y+10,10,10);
+      ellipse(x+35,y+25,10,10);
+      ellipse(x+35,y+40,10,10);
+    }
+    
 
-``
+```
