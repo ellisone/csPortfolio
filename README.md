@@ -6,7 +6,7 @@
 * Dice[here]()
 
 ```Java
-ivoid show()
+void show()
   {
     noStroke();
     fill(0);
@@ -46,6 +46,7 @@ ivoid show()
       ellipse(x+35,y+25,10,10);
       ellipse(x+35,y+40,10,10);
     }
+  }
     
 
 ```
