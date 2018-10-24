@@ -4,6 +4,7 @@
 * Lightning[here](https://ellisone.github.io/lightning2/index.html)
 * Lighting JS()
 * Dice[here](https://ellisone.github.io/dice3/)
+* Chemotaxis[here](https://ellisone.github.io/chemotaxis4/)
 
 ```Java
 void show()
