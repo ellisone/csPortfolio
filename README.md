@@ -8,71 +8,92 @@
 * Starfield[here](https://ellisone.github.io/starfield5/)
 
 ```Java
-int R1=255,G1=0,B1=0,R2=0,G2=255,B2=0,R3=0,G3=0,B3=255;//sets RBG values
-Particle[] Particles=new Particle[3168];//array of all particles
-ColorChange RGB1=new ColorChange(R1,G1,B1);//sets up the first RGB object
-ColorChange RGB2=new ColorChange(R2,G2,B2);//sets up the second RGB object
-ColorChange RGB3=new ColorChange(R3,G3,B3);//sets up the first RGB object
-void setup(){
-  size(900,900);//sets the window
-  //fullScreen();//optional window
+int R1=255,G1=0,B1=0,R2=0,G2=255,B2=0,R3=0,G3=0,B3=255;
+boolean V2=false;
+int timer;
+Particle[] Particles=new Particle[2168];
+ColorChange RGB1=new ColorChange(R1,G1,B1);
+ColorChange RGB2=new ColorChange(R2,G2,B2);
+ColorChange RGB3=new ColorChange(R3,G3,B3);
+void setSetUp(){
+  timer=3000;
+  if(V2==false){
+    V2=true;
+  }else if(V2==true){
+    V2=false;
+  }
+  
   for(int i=0; i<10; i++){
-    Particles[i]=new NormalParticle(10,.2,i*((Math.PI*2)/10));//sets the smallest normal paricle
+    Particles[i]=new NormalParticle(10,.2,i*((Math.PI*2)/10));
   }
   for(int i=10; i<60; i++){
-    Particles[i]=new NormalParticle(10,.1,i*((Math.PI*2)/50));//sets the middle normal particle
+    Particles[i]=new NormalParticle(10,.1,i*((Math.PI*2)/50));
   }
   for(int i=60; i<160; i++){
-    Particles[i]=new NormalParticle(5,-.02,i*((Math.PI*2)/100));//sets the largest normal particle
+    Particles[i]=new NormalParticle(5,-.02,i*((Math.PI*2)/100));
   }
-  for(int i=160; i<3160; i++){
-    Particles[i]=new OddballParticle(6);//sets all 3000 of the oddball particles
+  for(int i=160; i<2160; i++){
+    Particles[i]=new OddballParticle(6,V2);
   }
-  for(int i=3160; i<3168; i++){
-    Particles[i]=new JumboParticle(6,i);//sets all 8 of the jumbo particles
+  for(int i=2160; i<2168; i++){
+    Particles[i]=new JumboParticle(6,i,false);
   }
 }
 
+void setup(){
+  size(900,900);
+  //fullScreen();
+  setSetUp();
+}
+
 void draw(){
-  RGB1.setR(R1);//sets the new R value in the first RGB
-  RGB1.setG(G1);//sets the new G value in the first RGB
-  RGB1.setB(B1);//sets the new B value in the first RGB
-  RGB1.ChangeColor();//runs the colorChange method for the first RGB
-  R1=RGB1.getR();//gets the new R value in the first RGB
-  G1=RGB1.getG();//gets the new G value in the first RGB
-  B1=RGB1.getB();//gets the new B value in the first RGB
+  RGB1.setR(R1);
+  RGB1.setG(G1);
+  RGB1.setB(B1);
+  RGB1.ChangeColor();
+  R1=RGB1.getR();
+  G1=RGB1.getG();
+  B1=RGB1.getB();
   
-  RGB2.setR(R2);//sets the new R value in the second RGB
-  RGB2.setG(G2);//sets the new G value in the second RGB
-  RGB2.setB(B2);//sets the new B value in the second RGB
-  RGB2.ChangeColor();//runs the colorChange method for the second RGB
-  R2=RGB2.getR();//gets the new R value in the second RGB
-  G2=RGB2.getG();//gets the new G value in the second RGB
-  B2=RGB2.getB();//gets the new B value in the second RGB
+  RGB2.setR(R2);
+  RGB2.setG(G2);
+  RGB2.setB(B2);
+  RGB2.ChangeColor();
+  R2=RGB2.getR();
+  G2=RGB2.getG();
+  B2=RGB2.getB();
   
-  RGB3.setR(R3);//sets the new R value in the third RGB
-  RGB3.setG(G3);//sets the new G value in the third RGB
-  RGB3.setB(B3);//sets the new B value in the third RGB
-  RGB3.ChangeColor();//runs the colorChange method for the third RGB
-  R3=RGB3.getR();//gets the new R value in the third RGB
-  G3=RGB3.getG();//gets the new G value in the third RGB
-  B3=RGB3.getB();//gets the new B value in the third RGB
+  RGB3.setR(R3);
+  RGB3.setG(G3);
+  RGB3.setB(B3);
+  RGB3.ChangeColor();
+  R3=RGB3.getR();
+  G3=RGB3.getG();
+  B3=RGB3.getB();
   
-  
-  fill(0,0,0,5);//makes the background transparent
-  rect(0,0,width,height);//sets background
+  fill(0,0,0,5);
+  rect(0,0,width,height);
   noStroke();
   for(int i=0; i<Particles.length; i++){
     if(i<160){
-      fill(R1,G1,B1);//sets the color for the normal particles
-    }if(i>=160&&i<3160){
-      fill(R2,G2,B2,15);//sets the color for the oddball particles
-    }if(i>=3160&&i<3168){
-      fill(R3,G3,B3,35);//sets the color for the jumbo particles
+      fill(R1,G1,B1);
+    }if(i>=160&&i<2160){
+      fill(R2,G2,B2,15);
+    }if(i>=2160&&i<2168){
+      fill(R3,G3,B3,35);
     }
-    Particles[i].move();//moves the particles
-    Particles[i].show();//shows the particles
+    Particles[i].move();
+    Particles[i].show();
   }
+  timer--;
+  if(timer<0){
+    setSetUp();
+  }
+  
+}
+
+void mousePressed(){
+  setSetUp();
 }
 
 
@@ -108,23 +129,18 @@ class ColorChange{
   int getR(){
     return R;
   }
-  
   int getG(){
     return G;
   }
-  
   int getB(){
     return B;
   }
-  
   void setR(int r){
     R=r;
   }
-  
   void setG(int g){
     G=g;
   }
-  
   void setB(int b){
     B=b;
   }
@@ -133,8 +149,8 @@ class ColorChange{
 
 class JumboParticle extends OddballParticle{
   int side;
-  JumboParticle(double s,int si){
-    super(s);
+  JumboParticle(double s,int si,boolean v2){
+    super(s,v2);
     side=si%4;
     x=0;
     y=0;
@@ -155,6 +171,7 @@ class JumboParticle extends OddballParticle{
       x=25;
     }
   }
+  
   void move(){
      x+=xSpeed;
      y+=ySpeed;
@@ -182,11 +199,13 @@ class NormalParticle implements Particle{
     angleChange=ac;
     angle=a;
   }
+  
   public void move(){
     x+=Math.cos(angle)*speed;
     y+=Math.sin(angle)*speed;
     angle+=angleChange;
   }
+  
   public void show(){
     ellipse((float)x,(float)y,10,10);
   }
@@ -196,7 +215,9 @@ class NormalParticle implements Particle{
 class OddballParticle implements Particle{
   double x,y,XAttraction,YAttraction,speed,xSpeed,ySpeed;
   int XorY;
-  OddballParticle(double s){
+  Boolean V2;
+  OddballParticle(double s, boolean v2){
+    V2=v2;
     XorY=(int)(Math.random()*4);
     if(XorY==0){
       y=0;
@@ -219,13 +240,17 @@ class OddballParticle implements Particle{
     speed=s;
     xSpeed=(Math.abs(XAttraction-x)/(Math.abs(XAttraction-x)+(Math.abs(YAttraction-y)))*speed);
     ySpeed=(Math.abs(YAttraction-y)/(Math.abs(XAttraction-x)+(Math.abs(YAttraction-y)))*speed);
-    if(x>(width/2)){
-      xSpeed*=-1;
+    if(V2==true){
+      if(x>(width/2)){
+        xSpeed*=-1;
+      }
+      if(y>(height/2)){
+        ySpeed*=-1;
+      }
     }
-    if(y>(height/2)){
-      ySpeed*=-1;
-    }
+    
   }
+  
   
   double getX(){
     return x;
