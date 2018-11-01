@@ -196,7 +196,6 @@ class NormalParticle implements Particle{
 class OddballParticle implements Particle{
   double x,y,XAttraction,YAttraction,speed,xSpeed,ySpeed;
   int XorY;
-  boolean Reverse;
   OddballParticle(double s){
     XorY=(int)(Math.random()*4);
     if(XorY==0){
@@ -233,11 +232,6 @@ class OddballParticle implements Particle{
   }
   double getY(){
     return y;
-  }
-  
-  void Reverse(){
-    xSpeed*=-1;
-    ySpeed*=-1;
   }
   
   public void move(){
