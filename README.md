@@ -8,71 +8,70 @@
 * Starfield[here](https://ellisone.github.io/starfield5/)
 
 ```Java
-int R1=255,G1=0,B1=0,R2=0,G2=255,B2=0,R3=0,G3=0,B3=255;
-boolean ReverseOddball1;
-Particle[] Particles=new Particle[3168];
-ColorChange RGB1=new ColorChange(R1,G1,B1);
-ColorChange RGB2=new ColorChange(R2,G2,B2);
-ColorChange RGB3=new ColorChange(R3,G3,B3);
+int R1=255,G1=0,B1=0,R2=0,G2=255,B2=0,R3=0,G3=0,B3=255;//sets RBG values
+Particle[] Particles=new Particle[3168];//array of all particles
+ColorChange RGB1=new ColorChange(R1,G1,B1);//sets up the first RGB object
+ColorChange RGB2=new ColorChange(R2,G2,B2);//sets up the second RGB object
+ColorChange RGB3=new ColorChange(R3,G3,B3);//sets up the first RGB object
 void setup(){
-  size(900,900);
-  //fullScreen();
+  size(900,900);//sets the window
+  //fullScreen();//optional window
   for(int i=0; i<10; i++){
-    Particles[i]=new NormalParticle(10,.2,i*((Math.PI*2)/10));
+    Particles[i]=new NormalParticle(10,.2,i*((Math.PI*2)/10));//sets the smallest normal paricle
   }
   for(int i=10; i<60; i++){
-    Particles[i]=new NormalParticle(10,.1,i*((Math.PI*2)/50));
+    Particles[i]=new NormalParticle(10,.1,i*((Math.PI*2)/50));//sets the middle normal particle
   }
   for(int i=60; i<160; i++){
-    Particles[i]=new NormalParticle(5,-.02,i*((Math.PI*2)/100));
+    Particles[i]=new NormalParticle(5,-.02,i*((Math.PI*2)/100));//sets the largest normal particle
   }
   for(int i=160; i<3160; i++){
-    Particles[i]=new OddballParticle(6);
+    Particles[i]=new OddballParticle(6);//sets all 3000 of the oddball particles
   }
   for(int i=3160; i<3168; i++){
-    Particles[i]=new JumboParticle(6,i);
+    Particles[i]=new JumboParticle(6,i);//sets all 8 of the jumbo particles
   }
 }
 
 void draw(){
-  RGB1.setR(R1);
-  RGB1.setG(G1);
-  RGB1.setB(B1);
-  RGB1.ChangeColor();
-  R1=RGB1.getR();
-  G1=RGB1.getG();
-  B1=RGB1.getB();
+  RGB1.setR(R1);//sets the new R value in the first RGB
+  RGB1.setG(G1);//sets the new G value in the first RGB
+  RGB1.setB(B1);//sets the new B value in the first RGB
+  RGB1.ChangeColor();//runs the colorChange method for the first RGB
+  R1=RGB1.getR();//gets the new R value in the first RGB
+  G1=RGB1.getG();//gets the new G value in the first RGB
+  B1=RGB1.getB();//gets the new B value in the first RGB
   
-  RGB2.setR(R2);
-  RGB2.setG(G2);
-  RGB2.setB(B2);
-  RGB2.ChangeColor();
-  R2=RGB2.getR();
-  G2=RGB2.getG();
-  B2=RGB2.getB();
+  RGB2.setR(R2);//sets the new R value in the second RGB
+  RGB2.setG(G2);//sets the new G value in the second RGB
+  RGB2.setB(B2);//sets the new B value in the second RGB
+  RGB2.ChangeColor();//runs the colorChange method for the second RGB
+  R2=RGB2.getR();//gets the new R value in the second RGB
+  G2=RGB2.getG();//gets the new G value in the second RGB
+  B2=RGB2.getB();//gets the new B value in the second RGB
   
-  RGB3.setR(R3);
-  RGB3.setG(G3);
-  RGB3.setB(B3);
-  RGB3.ChangeColor();
-  R3=RGB3.getR();
-  G3=RGB3.getG();
-  B3=RGB3.getB();
+  RGB3.setR(R3);//sets the new R value in the third RGB
+  RGB3.setG(G3);//sets the new G value in the third RGB
+  RGB3.setB(B3);//sets the new B value in the third RGB
+  RGB3.ChangeColor();//runs the colorChange method for the third RGB
+  R3=RGB3.getR();//gets the new R value in the third RGB
+  G3=RGB3.getG();//gets the new G value in the third RGB
+  B3=RGB3.getB();//gets the new B value in the third RGB
   
   
-  fill(0,0,0,5);
-  rect(0,0,width,height);
+  fill(0,0,0,5);//makes the background transparent
+  rect(0,0,width,height);//sets background
   noStroke();
   for(int i=0; i<Particles.length; i++){
     if(i<160){
-      fill(R1,G1,B1);
+      fill(R1,G1,B1);//sets the color for the normal particles
     }if(i>=160&&i<3160){
-      fill(R2,G2,B2,15);
+      fill(R2,G2,B2,15);//sets the color for the oddball particles
     }if(i>=3160&&i<3168){
-      fill(R3,G3,B3,35);
+      fill(R3,G3,B3,35);//sets the color for the jumbo particles
     }
-    Particles[i].move();
-    Particles[i].show();
+    Particles[i].move();//moves the particles
+    Particles[i].show();//shows the particles
   }
 }
 
