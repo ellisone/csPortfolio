@@ -10,6 +10,7 @@
 
 3.
 a. I absolutely love my starfield and I am very happy with how it turned out even though I don't understand how some parts of it work. I mostly just put code down and saw what it did, then added more from there. My OddballParticle class was the most fun and experimental as I played along with the code.
+
 class OddballParticle implements Particle{
   double x,y,XAttraction,YAttraction,speed,xSpeed,ySpeed;
   int XorY;
@@ -48,7 +49,6 @@ class OddballParticle implements Particle{
     }
     
   }
- 
  
   double getX(){
     return x;
